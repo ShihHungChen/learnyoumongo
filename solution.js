@@ -4,12 +4,11 @@ mongo.connect('mongodb://localhost:27017/learnyoumongo', function(err, db){
         throw err;
     }
     var collection = db.collection('parrots');
-    var arg_age = +process.argv[2];
-    collection.count({ age : {$gt : arg_age}}, function(err ,count){
+    collection.count({ age : {$gt : Number(process.argv[2])}}, function(err ,count){
         if(err){
             throw err;
         }
-        console.log(parseInt(count));
+        console.log(count);
         db.close();
     })
 })
